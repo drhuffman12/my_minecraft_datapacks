@@ -60,9 +60,9 @@ function excavate {
 }
 
 function tunnel_down {
-  /fill ~-1 2 ~-1 ~1 ~2 ~1 glass hollow
-  /fill ~ 2 ~ ~ ~2 ~ minecraft:ladder
-  /fill ~1 2 ~1 ~1 ~2 ~1 minecraft:glowstone
+  /fill ~-1 2 ~-1 ~1 ~-1 ~1 glass hollow
+  /fill ~ 2 ~ ~ ~-1 ~ minecraft:ladder
+  /fill ~1 2 ~1 ~1 ~1 ~1 minecraft:glowstone
 }
 
 function prep_mine {
