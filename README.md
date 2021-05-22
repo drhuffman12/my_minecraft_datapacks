@@ -57,6 +57,17 @@ Also, it will generate a vertical pathway from your current position down to the
 After editing the ddddd files, be sure to run `mcscript compile` and make sure it succeeds; e.g.:
 
 ```
+$ mcscript compile
+ Generated   .//drh/data/drh/functions/mcscript/load.mcfunction 
+ Generated   .//drh/data/drh/functions/add_ceiling.mcfunction 
+ Generated   .//drh/data/drh/functions/tunnel_down.mcfunction 
+ Generated   .//drh/data/drh/functions/excavate.mcfunction 
+ Generated   .//drh/data/drh/functions/load.mcfunction 
+ Generated   .//drh/data/drh/functions/test.mcfunction 
+ Generated   .//node_modules/mcscript/lib/modals/basic.mcfunction 
+ Generated   .//drh/data/drh/functions/prep_mine.mcfunction 
+ Generated   .//drh/data/drh/functions/main.mcfunction 
+```
 
 
 ## See also:
