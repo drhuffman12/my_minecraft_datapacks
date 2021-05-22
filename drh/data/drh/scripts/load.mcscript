@@ -59,9 +59,16 @@ function excavate {
   }
 }
 
+function tunnel_down {
+  /fill ~-1 2 ~-1 ~1 ~2 ~1 glass hollow
+  /fill ~ 2 ~ ~ ~2 ~ minecraft:ladder
+  /fill ~1 2 ~1 ~1 ~2 ~1 minecraft:glowstone
+}
+
 function prep_mine {
   /say start
 
+  /function drh:tunnel_down
   /function drh:add_ceiling
   /function drh:excavate
 
