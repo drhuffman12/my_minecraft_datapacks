@@ -10,12 +10,5 @@ say bump_miner_entity beginning
 scoreboard players remove @s y 15
 say entity $(y @e[type=chest_minecart,name=Foo,limit=1]) 
 say player $(y @s)
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run say bump_miner_entity_NEXT
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run execute as @e[type=chest_minecart,name=Foo,limit=1] run function drh:add_ceiling_relative_to_entity
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run execute as @e[type=chest_minecart,name=Foo,limit=1] run function drh:excavate_relative_to_entity
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run execute as @e[type=chest_minecart,name=Foo,limit=1] run fill ~-1 ~14 ~-1 ~1 ~16 ~1 glass hollow
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run execute as @e[type=chest_minecart,name=Foo,limit=1] run tp @e[type=chest_minecart,name=Foo,limit=1] ~ ~15 ~
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run execute store result score @e[type=chest_minecart,name=Foo,limit=1] y run data get entity @e[type=chest_minecart,name=Foo,limit=1] Pos[1]
-execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run say TODO drh:bump_miner_entity re-loop
-
+execute if score @e[type=chest_minecart,name=Foo,limit=1] y < @s y run function drh:mcscript/while1
 say bump_miner_entity DONE

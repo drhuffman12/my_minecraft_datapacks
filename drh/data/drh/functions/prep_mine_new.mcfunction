@@ -14,6 +14,7 @@ function drh:excavate
 fill ~-1 16 ~-1 ~1 18 ~1 glass hollow
 summon chest_minecart ~ 17 ~ {CustomName:"\"Foo\""}
 function drh:start_miner_entity
-say TODO: /kill @e[type=chest_minecart,name=Foo]
+kill @e[type=chest_minecart,name=Foo]
 function drh:tunnel_down
+execute store result score @s y run data get entity @s Pos[1]
 say prep_mine_new DONE

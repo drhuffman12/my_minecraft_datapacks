@@ -18,7 +18,7 @@ Open a terminal and browse to your 'datapacks' folder under your saved game fold
 Copy the contents of 'my_minecraft_datapacks' under that 'datapacks' folder:
 
 ```
-cp $SOME_FOLDER/my_minecraft_datapacks/drh/ ~/.minecraft/saves/$SAVED_GAME/datapacks
+rm -r drh ; cp $SOME_FOLDER/my_minecraft_datapacks/drh/ ~/.minecraft/saves/$SAVED_GAME/datapacks ; ls -al
 ```
 
 ## Check your loaded datapacks

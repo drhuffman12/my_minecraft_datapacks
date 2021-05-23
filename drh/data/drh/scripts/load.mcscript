@@ -1,5 +1,8 @@
 #file: ./load
 
+  // 40
+  const xz_delta = 20
+
 // here goes your load content
 function test1 {
   // /tell @a Hello World
@@ -11,20 +14,23 @@ function add_ceiling {
   
   const y_ceil = Array{6,11,16}
 
+  // // 40
+  // const xz_delta = 20
+
   for(0,2,i){
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace stone
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace bedrock
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace diorite
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace andesite
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace granite
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace dirt
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace stone
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace bedrock
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace diorite
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace andesite
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace granite
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace dirt
 
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace gravel
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace gravel
 
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace sand
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace sand
 
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace lava
-    /fill ~-40 $(y_ceil).$(i) ~-40 ~40 $(y_ceil).$(i) ~40 glass replace water
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace lava
+    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace water
   }
 }
 
@@ -34,51 +40,53 @@ function excavate {
 
   const y_lower = Array{2,7,12}
   const y_upper = Array{5,10,15}
+  // const xz_delta = 20 // 40
+
   for(0,2,i){
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace stone
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace bedrock
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace diorite
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace andesite
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace granite
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace dirt
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace stone
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace bedrock
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace diorite
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace andesite
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace granite
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace dirt
 
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace gravel
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace gravel
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace gravel
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace gravel
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
 
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace sand
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace sand
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace sand
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace sand
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
 
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace lava
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_upper).$(i) ~40 air replace water
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace lava
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace water
 
-    /fill ~-40 $(y_lower).$(i) ~-40 ~40 $(y_lower).$(i) ~40 torch replace air
+    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_lower).$(i) ~$(xz_delta) torch replace air
   }
 }
 
 function add_ceiling_relative_to_entity {
   // const y_ce = 6
   
-  as('@e[type=chest_minecart,name=Foo,limit=1]'){
+  asat('@e[type=chest_minecart,name=Foo,limit=1]'){
     const y_ceil = Array{6,11,16}
 
     for(0,2,i){
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace stone
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace bedrock
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace diorite
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace andesite
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace granite
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace dirt
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace stone
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace bedrock
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace diorite
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace andesite
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace granite
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace dirt
 
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace gravel
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace gravel
 
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace sand
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace sand
 
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace lava
-      /fill ~-40 ~$(y_ceil).$(i) ~-40 ~40 ~$(y_ceil).$(i) ~40 glass replace water
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace lava
+      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace water
     }
   }
 }
@@ -86,31 +94,31 @@ function add_ceiling_relative_to_entity {
 function excavate_relative_to_entity {
   // const y_lo = 2
   // const y_up = 5
-  as('@e[type=chest_minecart,name=Foo,limit=1]'){
+  asat('@e[type=chest_minecart,name=Foo,limit=1]'){
     const y_lower = Array{0,5,10}
     const y_upper = Array{3,8,13}
     for(0,2,i){
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace stone
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace bedrock
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace diorite
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace andesite
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace granite
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace dirt
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace stone
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace bedrock
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace diorite
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace andesite
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace granite
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace dirt
 
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace gravel
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace gravel
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace gravel
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace gravel
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
 
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace sand
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace sand
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace sand
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace sand
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
 
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace lava
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_upper).$(i) ~40 air replace water
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace lava
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace water
 
-      /fill ~-40 ~$(y_lower).$(i) ~-40 ~40 ~$(y_lower).$(i) ~40 torch replace air
+      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_lower).$(i) ~$(xz_delta) torch replace air
     }
   }
 }
@@ -145,11 +153,11 @@ function bump_miner_entity {
   /say player $(y @s)
 
   // if (y_entity < y_player) {
-  if (y @e[type=chest_minecart,name=Foo,limit=1] < y @s) {
+  while (y @e[type=chest_minecart,name=Foo,limit=1] < y @s) {
     /say bump_miner_entity_NEXT
 
 
-    as('@e[type=chest_minecart,name=Foo,limit=1]'){
+    asat('@e[type=chest_minecart,name=Foo,limit=1]'){
       // WHILE entiry's scoreboard Y pos is less than player's scoreboard Y pos
       /function drh:add_ceiling_relative_to_entity
       /function drh:excavate_relative_to_entity
@@ -196,7 +204,7 @@ function start_miner_entity {
 
     // // Place a glass box right above the highest excavation (should be Y +15 offset)/function drh:bump_miner_entity
 
-    // as('@e[type=chest_minecart,name=Foo,limit=1]'){
+    // asat('@e[type=chest_minecart,name=Foo,limit=1]'){
     //   /fill ~-1 ~14 ~-1 ~1 ~16 ~1 glass hollow
     // }
     // // Move the entity up
@@ -227,13 +235,16 @@ function prep_mine_new {
   /function drh:start_miner_entity
 
   // FINALLY, get rid of entity
-  // /kill @e[type=chest_minecart,name=Foo]
-  /say TODO: /kill @e[type=chest_minecart,name=Foo]
+  /kill @e[type=chest_minecart,name=Foo]
+  // /say TODO: /kill @e[type=chest_minecart,name=Foo]
 
   // Now, add a simple tunnel down
   /function drh:tunnel_down
 
   // /scoreboard objectives remove y
+
+  // Re-set scoreboards re player's Y position
+  /execute store result score @s y run data get entity @s Pos[1]
 
   /say prep_mine_new DONE
 }
