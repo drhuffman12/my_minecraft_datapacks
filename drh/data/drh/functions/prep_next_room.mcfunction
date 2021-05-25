@@ -6,7 +6,7 @@
 ######
 # this file is generated based on a function specified in.//drh/data/drh/functions/load.mcscript
 say  DEBUG prep_next_room
-fill ~-4 ~3 ~-4 ~4 ~9 ~4 minecraft:air
+fill ~-4 ~4 ~-4 ~4 ~9 ~4 minecraft:air
 fill ~-4 ~4 ~-4 ~4 ~4 ~4 minecraft:glowstone
 fill ~-3 ~4 ~-4 ~3 ~4 ~4 minecraft:glass
 fill ~-4 ~4 ~-3 ~4 ~4 ~3 minecraft:glass

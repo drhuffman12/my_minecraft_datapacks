@@ -12,6 +12,6 @@ fill ~-3 ~-1 ~-4 ~3 ~-1 ~4 minecraft:glass
 fill ~-4 ~-1 ~-3 ~4 ~-1 ~3 minecraft:glass
 fill ~-3 ~-1 ~-3 ~3 ~4 ~3 minecraft:glass hollow
 fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
-fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
+fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:cobblestone_wall
 fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
 fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
