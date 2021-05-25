@@ -7,6 +7,13 @@
 function drh:mcscript/load
 
 
+function drh:sidebar_clear
+say  ------------
+
+
+
+
+say  DEBUG xz_delta: 20
 
 
 

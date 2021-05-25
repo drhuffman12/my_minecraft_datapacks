@@ -9,4 +9,5 @@
 # to drh/data/drh/functions/mcscript/load.mcfunction
 # please do not touch this file!
 # it is used by the compiler!
+scoreboard objectives add clear_sidebar dummy
 scoreboard objectives add y dummy
