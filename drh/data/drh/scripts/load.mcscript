@@ -1,261 +1,271 @@
 #file: ./load
 
-  // 40
-  const xz_delta = 20
+// NEVER assign anything to this; just for clearing sidebar; maybe there is a better way?
+var clear_sidebar
 
-// here goes your load content
+run function sidebar_clear {
+  /scoreboard objectives setdisplay sidebar clear_sidebar
+}
+
+/say  ------------
+
 function test1 {
-  // /tell @a Hello World
+  /sat @s Hello World
   /tp ~ ~4 ~
 }
 
-function add_ceiling {
-  // const y_ce = 6
-  
-  const y_ceil = Array{6,11,16}
-
-  // // 40
-  // const xz_delta = 20
-
-  for(0,2,i){
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace stone
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace bedrock
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace diorite
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace andesite
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace granite
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace dirt
-
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace gravel
-
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace sand
-
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace lava
-    /fill ~-$(xz_delta) $(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_ceil).$(i) ~$(xz_delta) glass replace water
-  }
+const xz_delta = 20
+var y
+function sidebar_show_y {
+  /scoreboard objectives setdisplay sidebar y
 }
+
+// const y_ceil = Array{6,11,16}
+// const y_floor_w4 = Array{5,10,15}
+// const y_floor_w3 = Array{4,9,14}
+// const y_floor_w2 = Array{3,8,13}
+// const y_floor_w1 = Array{2,7,12}
+// const y_floor = Array{1,6,11}
+
+// debug:
+/say  DEBUG xz_delta: $(xz_delta)
 
 function excavate {
-  // const y_lo = 2
-  // const y_up = 5
+  /say  DEBUG excavate
 
-  const y_lower = Array{2,7,12}
-  const y_upper = Array{5,10,15}
-  // const xz_delta = 20 // 40
+  // init
+  /function drh:excavate_init
 
-  for(0,2,i){
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace stone
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace bedrock
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace diorite
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace andesite
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace granite
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace dirt
+  y @s -= $(dy_room_offset)
 
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace gravel
+  // run
+  while (y @e[type=chest_minecart,name=Excavator,limit=1] <= y @s) {
+    asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
+      /function drh:excavate_floor
 
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace sand
-
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace lava
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_upper).$(i) ~$(xz_delta) air replace water
-
-    /fill ~-$(xz_delta) $(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) $(y_lower).$(i) ~$(xz_delta) torch replace air
+      // /function drh:get_excavator_pos
+    }
   }
+
+  asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
+    // common verticals:
+    /fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
+    /fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
+    /fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
+    /fill ~-2 2 ~-1 ~-2 ~5 ~-1 minecraft:ladder[facing=east]
+
+    // item elevator
+    /fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
+    // /fill ~-2 3 ~2 ~-2 2 ~2 minecraft:water
+    /fill ~2 3 ~-2 ~2 ~-1 ~-2 minecraft:water
+    // /fill ~-2 2 ~-2 ~-2 ~4 ~-2 minecraft:torch replace air
+
+  }
+
+  // cleanup
+  /function drh:excavators_delete
 }
 
-function add_ceiling_relative_to_entity {
-  // const y_ce = 6
+// unlesss(excavators_exist) {
+
+// }
+
+function excavate_init {
+  /say  DEBUG excavate_init
+
+  /function drh:sidebar_show_y
   
-  asat('@e[type=chest_minecart,name=Foo,limit=1]'){
-    const y_ceil = Array{6,11,16}
+  /function drh:get_player_pos
 
-    for(0,2,i){
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace stone
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace bedrock
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace diorite
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace andesite
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace granite
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace dirt
+  /function drh:excavators_delete
 
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace gravel
-
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace sand
-
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace lava
-      /fill ~-$(xz_delta) ~$(y_ceil).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_ceil).$(i) ~$(xz_delta) glass replace water
-    }
-  }
+  /function drh:init_excavator_and_chamber
+  
+  /function drh:get_player_pos
+  /function drh:get_excavator_pos
 }
 
-function excavate_relative_to_entity {
-  // const y_lo = 2
-  // const y_up = 5
-  asat('@e[type=chest_minecart,name=Foo,limit=1]'){
-    const y_lower = Array{0,5,10}
-    const y_upper = Array{3,8,13}
-    for(0,2,i){
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace stone
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace bedrock
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace diorite
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace andesite
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace granite
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace dirt
+function excavators_exist {
+  /say  DEBUG excavators_exist
 
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace gravel
-
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace sand
-
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace lava
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_upper).$(i) ~$(xz_delta) air replace water
-
-      /fill ~-$(xz_delta) ~$(y_lower).$(i) ~-$(xz_delta) ~$(xz_delta) ~$(y_lower).$(i) ~$(xz_delta) torch replace air
-    }
-  }
+  // /kill @e[type=chest_minecart,name=Excavator]
 }
 
-function tunnel_down {
-  /fill ~-1 2 ~-1 ~1 ~-1 ~1 glass hollow
-  /fill ~ 2 ~ ~ ~-1 ~ minecraft:ladder
-  /fill ~1 2 ~1 ~1 ~1 ~1 minecraft:glowstone
+function excavators_delete {
+  /say  DEBUG excavators_delete
+
+  /kill @e[type=chest_minecart,name=Excavator]
 }
 
-function bump_miner_entity_OLD {
-  /say bump_miner_entity beginning
-  var y
+function init_excavator_and_chamber {
+  /say  DEBUG init_excavator_and_chamber
 
-    // // Use scorebords to note the entity's Y position
-    // /execute store result score @e[type=chest_minecart,name=Foo,limit=1] y run data get entity @e[type=chest_minecart,name=Foo,limit=1] Pos[1]
+  // initial main room floor/porch
+  /fill ~-4 3 ~-4 ~4 8 ~4 minecraft:air
+  /fill ~-4 2 ~-4 ~4 2 ~4 minecraft:glowstone
+  /fill ~-3 2 ~-4 ~3 2 ~4 minecraft:glass
+  /fill ~-4 2 ~-3 ~4 2 ~3 minecraft:glass
 
-  /say bump_miner_entity DONE
+  // initial main room walls/ceiling/floor
+  /fill ~-3 2 ~-3 ~3 8 ~3 minecraft:glass hollow
+
+  /summon chest_minecart ~ 3 ~ {CustomName:"\"Excavator\""}
+
+  // Minecart should be summon to here:
+  // /tp ~ 3 ~
 }
 
-function bump_miner_entity {
-  /say bump_miner_entity beginning
-  var y
-  y @s -= 15
 
-  // const y_entity = y @e[type=chest_minecart,name=Foo,limit=1]
-  // const y_player = y @s
+function get_player_pos {
+  /say  DEBUG get_player_pos
 
-  // /say $(y_entity)
-  // /say $(y_player)
-  /say entity $(y @e[type=chest_minecart,name=Foo,limit=1]) 
-  /say player $(y @s)
-
-  // if (y_entity < y_player) {
-  while (y @e[type=chest_minecart,name=Foo,limit=1] < y @s) {
-    /say bump_miner_entity_NEXT
-
-
-    asat('@e[type=chest_minecart,name=Foo,limit=1]'){
-      // WHILE entiry's scoreboard Y pos is less than player's scoreboard Y pos
-      /function drh:add_ceiling_relative_to_entity
-      /function drh:excavate_relative_to_entity
-
-      // Place a glass box right above the highest excavation (should be Y +15 offset)
-      /fill ~-1 ~14 ~-1 ~1 ~16 ~1 glass hollow
-
-      // Move the entity up
-      // TODO: relative to entity, MOT relative to player!
-      /tp @e[type=chest_minecart,name=Foo,limit=1] ~ ~15 ~
-    }
-
-    // Use scorebords to note the entity's Y position
-    /execute store result score @e[type=chest_minecart,name=Foo,limit=1] y run data get entity @e[type=chest_minecart,name=Foo,limit=1] Pos[1]
-
-    // /function drh:bump_miner_entity
-    /say TODO drh:bump_miner_entity re-loop
-  }
-  /say bump_miner_entity DONE
-}
-
-function start_miner_entity {
-  /say start_miner_entity beginning
-  var y
-  // LOOP:
-
-  // Use scorebords to note the entity's Y position
-  /execute store result score @e[type=chest_minecart,name=Foo,limit=1] y run data get entity @e[type=chest_minecart,name=Foo,limit=1] Pos[1]
-
-  /function drh:bump_miner_entity
-  // const y_entity = y @e[type=chest_minecart,name=Foo,limit=1]
-  // const y_player = y @s
-
-  // /say $(y_entity)
-  // /say $(y_player)
-
-  // while (y_entity < y_player) {
-  // while (y @e[type=chest_minecart,name=Foo,limit=1] < y @s) {
-    // /say prep_mine_new next
-
-    // // WHILE entiry's scoreboard Y pos is less than player's scoreboard Y pos
-    // /function drh:add_ceiling_relative_to_entity
-    // /function drh:excavate_relative_to_entity
-
-    // // Place a glass box right above the highest excavation (should be Y +15 offset)/function drh:bump_miner_entity
-
-    // asat('@e[type=chest_minecart,name=Foo,limit=1]'){
-    //   /fill ~-1 ~14 ~-1 ~1 ~16 ~1 glass hollow
-    // }
-    // // Move the entity up
-    // /tp @e[type=chest_minecart,name=Foo,limit=1] ~ ~15 ~
-
-    // // Use scorebords to note the entity's Y position
-    // /execute store result score @e[type=chest_minecart,name=Foo,limit=1] y run data get entity @e[type=chest_minecart,name=Foo,limit=1] Pos[1]
-  // }
-  /say start_miner_entity DONE
-}
-function prep_mine_new {
-  /say prep_mine_new beginning
-
-  var y
-  /scoreboard objectives setdisplay sidebar y
-
-  // Use scoreboards to note the player's Y position
+  // Use scorebords to note the player's x,y,z position
+  /execute store result score @s x run data get entity @s Pos[0]
   /execute store result score @s y run data get entity @s Pos[1]
-
-  // Run excavation for diamonds (3 layers from Y 2 to Y 16)
-  /function drh:add_ceiling
-  /function drh:excavate
-
-  // Place a glass box containing an entity right above the diamond excavation
-  /fill ~-1 16 ~-1 ~1 18 ~1 glass hollow
-  /summon chest_minecart ~ 17 ~ {CustomName:"\"Foo\""}
-
-  /function drh:start_miner_entity
-
-  // FINALLY, get rid of entity
-  /kill @e[type=chest_minecart,name=Foo]
-  // /say TODO: /kill @e[type=chest_minecart,name=Foo]
-
-  // Now, add a simple tunnel down
-  /function drh:tunnel_down
-
-  // /scoreboard objectives remove y
-
-  // Re-set scoreboards re player's Y position
-  /execute store result score @s y run data get entity @s Pos[1]
-
-  /say prep_mine_new DONE
+  /execute store result score @s z run data get entity @s Pos[2]
 }
 
-function prep_mine {
-  /say start
+function get_excavator_pos {
+  /say  DEBUG get_excavator_pos
 
-  /function drh:tunnel_down
-  /function drh:add_ceiling
-  /function drh:excavate
+  // Use scorebords to note the entity's y position
+  /execute store result score @e[type=chest_minecart,name=Excavator,limit=1] y run data get entity @e[type=chest_minecart,name=Excavator,limit=1] Pos[1]
 
-  /say done
 }
 
+// Below are meant to be relative to the current position of the Excavator
+
+function excavate_floor{
+  /say  DEBUG excavate_floor
+
+  /function drh:build_room
+  /function drh:excavate_non_ores1
+  /function drh:excavate_non_ores2
+  /function drh:excavate_non_ores3
+  /function drh:prep_next_room
+}
+
+function build_room {
+  /say  DEBUG build_room
+
+  // initial main room floor/porch
+  /fill ~-4 ~ ~-4 ~4 ~5 ~4 minecraft:air
+  /fill ~-4 ~-1 ~-4 ~4 ~-1 ~4 minecraft:glowstone
+  /fill ~-3 ~-1 ~-4 ~3 ~-1 ~4 minecraft:glass
+  /fill ~-4 ~-1 ~-3 ~4 ~-1 ~3 minecraft:glass
+
+  // initial main room 'box'
+  /fill ~-3 ~-1 ~-3 ~3 ~5 ~3 minecraft:glass hollow
+
+  // non-glass walls/ceiling/floor
+  /fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:polished_diorite
+  /fill ~-3 ~ ~-3 ~3 ~ ~3 minecraft:polished_andesite replace glass
+  /fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_andesite replace glass
+
+  // center
+  /fill ~ ~-1 ~ ~ ~-1 ~ minecraft:glowstone
+
+  // corners
+  /fill ~-3 ~0 ~-3 ~-3 ~4 ~-3 minecraft:cobblestone_wall
+  /fill ~-3 ~0 ~3 ~-3 ~4 ~3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~-3 ~3 ~4 ~-3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~3 ~3 ~4 ~3 minecraft:cobblestone_wall
+
+  // interior
+  /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
+  // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
+  /fill ~-1 ~2 ~ ~-1 ~4 ~2 minecraft:cobblestone_wall
+  /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
+  /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
+
+  // doorway
+  /fill ~3 ~ ~2 ~3 ~1 ~2 minecraft:air
+  /fill ~2 ~ ~3 ~2 ~1 ~3 minecraft:air
+
+  /fill ~2 ~2 ~2 ~2 ~2 ~2 minecraft:polished_diorite
+  /fill ~2 ~1 ~2 ~2 ~1 ~2 minecraft:oak_button[face=ceiling]
+  
+  /fill ~2 ~ ~1 ~2 ~ ~1 minecraft:iron_door[facing=north,half=lower,hinge=right]
+  /fill ~2 ~1 ~1 ~2 ~1 ~1 minecraft:iron_door[facing=north,half=upper,hinge=right]
+
+  /fill ~1 ~ ~2 ~1 ~ ~2 minecraft:iron_door[facing=west,half=lower]
+  /fill ~1 ~1 ~2 ~1 ~1 ~2 minecraft:iron_door[facing=west,half=upper]
+
+  /fill ~1 ~ ~1 ~1 ~ ~1 minecraft:stone_pressure_plate
+
+  /fill ~2 ~ ~ ~2 ~1 ~ minecraft:iron_bars
+  /fill ~ ~ ~2 ~ ~1 ~2 minecraft:iron_bars
+
+  // item elevator
+  /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
+  /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+}
+
+function excavate_non_ores1 {
+  /say  DEBUG excavate_non_ores1
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace bedrock
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace stone
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace diorite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace andesite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace granite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace dirt
+}
+
+function excavate_non_ores2 {
+  /say  DEBUG excavate_non_ores2
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+}
+
+function excavate_non_ores3 {
+  /say  DEBUG excavate_non_ores3
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace lava
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace water
+
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) torch replace air
+  
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace stone
+}
+
+function prep_next_room {
+  /say  DEBUG prep_next_room
+
+  // initial main room floor/porch
+  /fill ~-4 ~5 ~-4 ~4 ~11 ~4 minecraft:air
+  /fill ~-4 ~5 ~-4 ~4 ~5 ~4 minecraft:glowstone
+  /fill ~-3 ~5 ~-4 ~3 ~5 ~4 minecraft:glass
+  /fill ~-4 ~5 ~-3 ~4 ~5 ~3 minecraft:glass
+
+  // initial main room walls/ceiling/floor
+  /fill ~-3 ~5 ~-3 ~3 ~11 ~3 minecraft:glass hollow
+  /fill ~-3 ~5 ~-3 ~3 ~5 ~3 minecraft:polished_diorite
+
+  // non-glass walls/ceiling/floor
+  /fill ~-3 ~11 ~-3 ~3 ~11 ~3 minecraft:polished_diorite
+
+  // move cart up to next level
+  /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~$(dy_room_offset) ~
+  /function drh:get_excavator_pos
+}
+  // /fill ~-3 2 ~-3 ~3 7 ~3 minecraft:polished_andesite hollow
+
+  // // porch
+  // /fill ~-4 2 ~-4 ~4 2 ~4 glowstone hollow
+  // /fill ~-3 2 ~-3 ~4 2 ~4 glass hollow
+  // /fill ~-4 2 ~-4 ~3 2 ~3 glass hollow
+
+
+  // /fill ~-3 2 ~-3 ~3 2 ~3 minecraft:cobblestone_wall
+  // /fill ~-3 2 ~-3 ~3 2 ~3 minecraft:polished_diorite
+  // /fill ~-3 2 ~-3 ~3 2 ~3 cobblestone_wall hollow
