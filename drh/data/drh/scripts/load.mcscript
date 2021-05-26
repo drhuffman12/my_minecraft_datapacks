@@ -36,7 +36,7 @@ function excavate {
   // init
   /function drh:excavate_init
 
-  y @s -= 5
+  y @s -= $(dy_room_offset)
 
   // run
   while (y @e[type=chest_minecart,name=Excavator,limit=1] <= y @s) {
@@ -52,7 +52,14 @@ function excavate {
     /fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
     /fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
     /fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
-    /fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:ladder[facing=east]
+    /fill ~-2 2 ~-1 ~-2 ~5 ~-1 minecraft:ladder[facing=east]
+
+    // item elevator
+    /fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
+    // /fill ~-2 3 ~2 ~-2 2 ~2 minecraft:water
+    /fill ~2 3 ~-2 ~2 ~-1 ~-2 minecraft:water
+    // /fill ~-2 2 ~-2 ~-2 ~4 ~-2 minecraft:torch replace air
+
   }
 
   // cleanup
@@ -94,13 +101,13 @@ function init_excavator_and_chamber {
   /say  DEBUG init_excavator_and_chamber
 
   // initial main room floor/porch
-  /fill ~-4 3 ~-4 ~4 7 ~4 minecraft:air
+  /fill ~-4 3 ~-4 ~4 8 ~4 minecraft:air
   /fill ~-4 2 ~-4 ~4 2 ~4 minecraft:glowstone
   /fill ~-3 2 ~-4 ~3 2 ~4 minecraft:glass
   /fill ~-4 2 ~-3 ~4 2 ~3 minecraft:glass
 
   // initial main room walls/ceiling/floor
-  /fill ~-3 2 ~-3 ~3 7 ~3 minecraft:glass hollow
+  /fill ~-3 2 ~-3 ~3 8 ~3 minecraft:glass hollow
 
   /summon chest_minecart ~ 3 ~ {CustomName:"\"Excavator\""}
 
@@ -132,7 +139,9 @@ function excavate_floor{
   /say  DEBUG excavate_floor
 
   /function drh:build_room
-  // /function drh:excavate_blocks
+  /function drh:excavate_non_ores1
+  /function drh:excavate_non_ores2
+  /function drh:excavate_non_ores3
   /function drh:prep_next_room
 }
 
@@ -140,66 +149,113 @@ function build_room {
   /say  DEBUG build_room
 
   // initial main room floor/porch
-  /fill ~-4 ~ ~-4 ~4 ~4 ~4 minecraft:air
+  /fill ~-4 ~ ~-4 ~4 ~5 ~4 minecraft:air
   /fill ~-4 ~-1 ~-4 ~4 ~-1 ~4 minecraft:glowstone
   /fill ~-3 ~-1 ~-4 ~3 ~-1 ~4 minecraft:glass
   /fill ~-4 ~-1 ~-3 ~4 ~-1 ~3 minecraft:glass
 
   // initial main room 'box'
-  /fill ~-3 ~-1 ~-3 ~3 ~4 ~3 minecraft:glass hollow
+  /fill ~-3 ~-1 ~-3 ~3 ~5 ~3 minecraft:glass hollow
 
   // non-glass walls/ceiling/floor
   /fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:polished_diorite
   /fill ~-3 ~ ~-3 ~3 ~ ~3 minecraft:polished_andesite replace glass
-  /fill ~-3 ~3 ~-3 ~3 ~3 ~3 minecraft:polished_andesite replace glass
+  /fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_andesite replace glass
 
   // center
   /fill ~ ~-1 ~ ~ ~-1 ~ minecraft:glowstone
 
   // corners
-  /fill ~-3 ~0 ~-3 ~-3 ~3 ~-3 minecraft:cobblestone_wall
-  /fill ~-3 ~0 ~3 ~-3 ~3 ~3 minecraft:cobblestone_wall
-  /fill ~3 ~0 ~-3 ~3 ~3 ~-3 minecraft:cobblestone_wall
-  /fill ~3 ~0 ~3 ~3 ~3 ~3 minecraft:cobblestone_wall
+  /fill ~-3 ~0 ~-3 ~-3 ~4 ~-3 minecraft:cobblestone_wall
+  /fill ~-3 ~0 ~3 ~-3 ~4 ~3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~-3 ~3 ~4 ~-3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~3 ~3 ~4 ~3 minecraft:cobblestone_wall
 
   // interior
   /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
   // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
-  /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:cobblestone_wall
+  /fill ~-1 ~2 ~ ~-1 ~4 ~2 minecraft:cobblestone_wall
   /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
   /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
 
-  /fill ~-2 ~ ~-2 ~-2 ~ ~-2 minecraft:stone_pressure_plate
-  /fill ~-3 ~ ~-2 ~-3 ~ ~-2 minecraft:iron_door[facing=west,half=lower]
-  /fill ~-3 ~1 ~-2 ~-3 ~1 ~-2 minecraft:iron_door[facing=west,half=upper]
+  // doorway
+  /fill ~3 ~ ~2 ~3 ~1 ~2 minecraft:air
+  /fill ~2 ~ ~3 ~2 ~1 ~3 minecraft:air
 
+  /fill ~2 ~2 ~2 ~2 ~2 ~2 minecraft:polished_diorite
+  /fill ~2 ~1 ~2 ~2 ~1 ~2 minecraft:oak_button[face=ceiling]
+  
+  /fill ~2 ~ ~1 ~2 ~ ~1 minecraft:iron_door[facing=north,half=lower,hinge=right]
+  /fill ~2 ~1 ~1 ~2 ~1 ~1 minecraft:iron_door[facing=north,half=upper,hinge=right]
 
+  /fill ~1 ~ ~2 ~1 ~ ~2 minecraft:iron_door[facing=west,half=lower]
+  /fill ~1 ~1 ~2 ~1 ~1 ~2 minecraft:iron_door[facing=west,half=upper]
+
+  /fill ~1 ~ ~1 ~1 ~ ~1 minecraft:stone_pressure_plate
+
+  /fill ~2 ~ ~ ~2 ~1 ~ minecraft:iron_bars
+  /fill ~ ~ ~2 ~ ~1 ~2 minecraft:iron_bars
+
+  // item elevator
+  /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
+  /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
 }
 
-function excavate_blocks {
-  /say  DEBUG excavate_blocks
+function excavate_non_ores1 {
+  /say  DEBUG excavate_non_ores1
 
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace bedrock
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace stone
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace diorite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace andesite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace granite
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace dirt
+}
 
+function excavate_non_ores2 {
+  /say  DEBUG excavate_non_ores2
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
+}
+
+function excavate_non_ores3 {
+  /say  DEBUG excavate_non_ores3
+
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace lava
+  /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace water
+
+  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) torch replace air
+  
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace stone
 }
 
 function prep_next_room {
   /say  DEBUG prep_next_room
 
   // initial main room floor/porch
-  /fill ~-4 ~4 ~-4 ~4 ~9 ~4 minecraft:air
-  /fill ~-4 ~4 ~-4 ~4 ~4 ~4 minecraft:glowstone
-  /fill ~-3 ~4 ~-4 ~3 ~4 ~4 minecraft:glass
-  /fill ~-4 ~4 ~-3 ~4 ~4 ~3 minecraft:glass
+  /fill ~-4 ~5 ~-4 ~4 ~11 ~4 minecraft:air
+  /fill ~-4 ~5 ~-4 ~4 ~5 ~4 minecraft:glowstone
+  /fill ~-3 ~5 ~-4 ~3 ~5 ~4 minecraft:glass
+  /fill ~-4 ~5 ~-3 ~4 ~5 ~3 minecraft:glass
 
   // initial main room walls/ceiling/floor
-  /fill ~-3 ~4 ~-3 ~3 ~9 ~3 minecraft:glass hollow
-  /fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_diorite
+  /fill ~-3 ~5 ~-3 ~3 ~11 ~3 minecraft:glass hollow
+  /fill ~-3 ~5 ~-3 ~3 ~5 ~3 minecraft:polished_diorite
 
   // non-glass walls/ceiling/floor
-  /fill ~-3 ~9 ~-3 ~3 ~9 ~3 minecraft:polished_diorite
+  /fill ~-3 ~11 ~-3 ~3 ~11 ~3 minecraft:polished_diorite
 
   // move cart up to next level
-  /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~5 ~
+  /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~$(dy_room_offset) ~
   /function drh:get_excavator_pos
 }
   // /fill ~-3 2 ~-3 ~3 7 ~3 minecraft:polished_andesite hollow

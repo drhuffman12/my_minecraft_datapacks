@@ -7,10 +7,12 @@
 # this file is generated based on a function specified in.//drh/data/drh/functions/load.mcscript
 say  DEBUG excavate
 function drh:excavate_init
-scoreboard players remove @s y 5
+scoreboard players remove @s y 6
 execute if score @e[type=chest_minecart,name=Excavator,limit=1] y <= @s y run function drh:mcscript/while1
 execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
 execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
 execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
-execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:ladder[facing=east]
+execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~-2 2 ~-1 ~-2 ~5 ~-1 minecraft:ladder[facing=east]
+execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
+execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run fill ~2 3 ~-2 ~2 ~-1 ~-2 minecraft:water
 function drh:excavators_delete

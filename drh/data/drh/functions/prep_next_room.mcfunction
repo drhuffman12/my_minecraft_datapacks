@@ -6,12 +6,12 @@
 ######
 # this file is generated based on a function specified in.//drh/data/drh/functions/load.mcscript
 say  DEBUG prep_next_room
-fill ~-4 ~4 ~-4 ~4 ~9 ~4 minecraft:air
-fill ~-4 ~4 ~-4 ~4 ~4 ~4 minecraft:glowstone
-fill ~-3 ~4 ~-4 ~3 ~4 ~4 minecraft:glass
-fill ~-4 ~4 ~-3 ~4 ~4 ~3 minecraft:glass
-fill ~-3 ~4 ~-3 ~3 ~9 ~3 minecraft:glass hollow
-fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_diorite
-fill ~-3 ~9 ~-3 ~3 ~9 ~3 minecraft:polished_diorite
-tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~5 ~
+fill ~-4 ~5 ~-4 ~4 ~11 ~4 minecraft:air
+fill ~-4 ~5 ~-4 ~4 ~5 ~4 minecraft:glowstone
+fill ~-3 ~5 ~-4 ~3 ~5 ~4 minecraft:glass
+fill ~-4 ~5 ~-3 ~4 ~5 ~3 minecraft:glass
+fill ~-3 ~5 ~-3 ~3 ~11 ~3 minecraft:glass hollow
+fill ~-3 ~5 ~-3 ~3 ~5 ~3 minecraft:polished_diorite
+fill ~-3 ~11 ~-3 ~3 ~11 ~3 minecraft:polished_diorite
+tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~6 ~
 function drh:get_excavator_pos
