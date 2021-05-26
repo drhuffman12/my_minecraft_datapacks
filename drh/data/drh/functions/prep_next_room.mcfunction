@@ -11,5 +11,7 @@ fill ~-4 ~4 ~-4 ~4 ~4 ~4 minecraft:glowstone
 fill ~-3 ~4 ~-4 ~3 ~4 ~4 minecraft:glass
 fill ~-4 ~4 ~-3 ~4 ~4 ~3 minecraft:glass
 fill ~-3 ~4 ~-3 ~3 ~9 ~3 minecraft:glass hollow
+fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_diorite
+fill ~-3 ~9 ~-3 ~3 ~9 ~3 minecraft:polished_diorite
 tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~5 ~
 function drh:get_excavator_pos

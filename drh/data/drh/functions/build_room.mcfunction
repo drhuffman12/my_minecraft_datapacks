@@ -11,7 +11,18 @@ fill ~-4 ~-1 ~-4 ~4 ~-1 ~4 minecraft:glowstone
 fill ~-3 ~-1 ~-4 ~3 ~-1 ~4 minecraft:glass
 fill ~-4 ~-1 ~-3 ~4 ~-1 ~3 minecraft:glass
 fill ~-3 ~-1 ~-3 ~3 ~4 ~3 minecraft:glass hollow
+fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:polished_diorite
+fill ~-3 ~ ~-3 ~3 ~ ~3 minecraft:polished_andesite replace glass
+fill ~-3 ~3 ~-3 ~3 ~3 ~3 minecraft:polished_andesite replace glass
+fill ~ ~-1 ~ ~ ~-1 ~ minecraft:glowstone
+fill ~-3 ~0 ~-3 ~-3 ~3 ~-3 minecraft:cobblestone_wall
+fill ~-3 ~0 ~3 ~-3 ~3 ~3 minecraft:cobblestone_wall
+fill ~3 ~0 ~-3 ~3 ~3 ~-3 minecraft:cobblestone_wall
+fill ~3 ~0 ~3 ~3 ~3 ~3 minecraft:cobblestone_wall
 fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
 fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:cobblestone_wall
 fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
 fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
+fill ~-2 ~ ~-2 ~-2 ~ ~-2 minecraft:stone_pressure_plate
+fill ~-3 ~ ~-2 ~-3 ~ ~-2 minecraft:iron_door[facing=west,half=lower]
+fill ~-3 ~1 ~-2 ~-3 ~1 ~-2 minecraft:iron_door[facing=west,half=upper]

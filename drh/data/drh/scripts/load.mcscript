@@ -39,7 +39,7 @@ function excavate {
   y @s -= 5
 
   // run
-  while (y @e[type=chest_minecart,name=Excavator,limit=1] < y @s) {
+  while (y @e[type=chest_minecart,name=Excavator,limit=1] <= y @s) {
     asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
       /function drh:excavate_floor
 
@@ -145,19 +145,35 @@ function build_room {
   /fill ~-3 ~-1 ~-4 ~3 ~-1 ~4 minecraft:glass
   /fill ~-4 ~-1 ~-3 ~4 ~-1 ~3 minecraft:glass
 
-  // initial main room walls/ceiling/floor
+  // initial main room 'box'
   /fill ~-3 ~-1 ~-3 ~3 ~4 ~3 minecraft:glass hollow
-  // /setblock ~ ~ ~ minecraft:oak_door[facing=south]
 
+  // non-glass walls/ceiling/floor
+  /fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:polished_diorite
+  /fill ~-3 ~ ~-3 ~3 ~ ~3 minecraft:polished_andesite replace glass
+  /fill ~-3 ~3 ~-3 ~3 ~3 ~3 minecraft:polished_andesite replace glass
+
+  // center
+  /fill ~ ~-1 ~ ~ ~-1 ~ minecraft:glowstone
+
+  // corners
+  /fill ~-3 ~0 ~-3 ~-3 ~3 ~-3 minecraft:cobblestone_wall
+  /fill ~-3 ~0 ~3 ~-3 ~3 ~3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~-3 ~3 ~3 ~-3 minecraft:cobblestone_wall
+  /fill ~3 ~0 ~3 ~3 ~3 ~3 minecraft:cobblestone_wall
+
+  // interior
   /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
   // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
   /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:cobblestone_wall
-  // /fill ~-1 ~   ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west]
   /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
   /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
-  // /fill ~-2 ~ ~-1 ~-2 ~ ~1 minecraft:
-  // /setblock ~-2 ~ ~-1 wall_sign[facing=west] 5 replace {Text1:"hi",Text2:""}
-  // /fill ~-2 ~ ~-1 ~-2 ~4 ~-1 minecraft:oak_wall_sign[facing=east]
+
+  /fill ~-2 ~ ~-2 ~-2 ~ ~-2 minecraft:stone_pressure_plate
+  /fill ~-3 ~ ~-2 ~-3 ~ ~-2 minecraft:iron_door[facing=west,half=lower]
+  /fill ~-3 ~1 ~-2 ~-3 ~1 ~-2 minecraft:iron_door[facing=west,half=upper]
+
+
 }
 
 function excavate_blocks {
@@ -177,6 +193,10 @@ function prep_next_room {
 
   // initial main room walls/ceiling/floor
   /fill ~-3 ~4 ~-3 ~3 ~9 ~3 minecraft:glass hollow
+  /fill ~-3 ~4 ~-3 ~3 ~4 ~3 minecraft:polished_diorite
+
+  // non-glass walls/ceiling/floor
+  /fill ~-3 ~9 ~-3 ~3 ~9 ~3 minecraft:polished_diorite
 
   // move cart up to next level
   /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~5 ~

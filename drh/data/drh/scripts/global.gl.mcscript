@@ -1,0 +1,31 @@
+// global variables, consts and modals
+
+
+// NEVER assign anything to this; just for clearing sidebar; maybe there is a better way?
+var clear_sidebar
+
+run function sidebar_clear {
+  /scoreboard objectives setdisplay sidebar clear_sidebar
+}
+
+const xz_delta = 20
+
+// debug:
+/say DEBUG xz_delta: $(xz_delta)
+
+var y
+
+const testMap = Map{
+	"key1":"value",
+	"key2":"value2"
+}
+
+// const testArr = Array{
+// 	"value", // index 0
+// 	"value2" // index 1
+// }
+
+
+const dy_ceiling = 4
+// const dy_floor = -1
+const dy_room_offset = 5
