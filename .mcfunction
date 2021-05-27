@@ -6,6 +6,7 @@
 ######
 function drh:sidebar_clear
 
+
 say DEBUG xz_delta: 20
 
 

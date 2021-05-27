@@ -7,6 +7,7 @@
 # this file is generated based on a function specified in.//drh/data/drh/functions/load.mcscript
 say  DEBUG excavate_floor
 function drh:build_room
+function drh:add_outer_walls_to_mine_area
 function drh:excavate_non_ores1
 function drh:excavate_non_ores2
 function drh:excavate_non_ores3
