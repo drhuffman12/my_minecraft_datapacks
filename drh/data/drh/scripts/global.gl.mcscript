@@ -9,6 +9,7 @@ run function sidebar_clear {
 }
 
 const xz_delta = 20
+const xz_delta_outer_wall = 21
 
 // debug:
 /say DEBUG xz_delta: $(xz_delta)

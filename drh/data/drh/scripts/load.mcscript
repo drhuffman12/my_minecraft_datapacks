@@ -48,18 +48,8 @@ function excavate {
   }
 
   asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
-    // common verticals:
-    /fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
-    /fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
-    /fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
-    /fill ~-2 2 ~-1 ~-2 ~5 ~-1 minecraft:ladder[facing=east]
-
-    // item elevator
-    /fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
-    // /fill ~-2 3 ~2 ~-2 2 ~2 minecraft:water
-    /fill ~2 3 ~-2 ~2 ~-1 ~-2 minecraft:water
-    // /fill ~-2 2 ~-2 ~-2 ~4 ~-2 minecraft:torch replace air
-
+    // /function drh:prep_next_room
+    /function drh:build_elevators_and_penthouse    
   }
 
   // cleanup
@@ -69,6 +59,71 @@ function excavate {
 // unlesss(excavators_exist) {
 
 // }
+
+function build_elevators_and_penthouse {
+
+  /function drh:build_room_common
+
+  // item elevator (upward)
+  /fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
+  
+  /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
+  /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+
+  // item elevator (downward, lower level)
+  /fill ~-1 4 ~2 ~-1 4 ~2 minecraft:iron_bars
+  /fill ~-1 3 ~2 ~-1 3 ~2 minecraft:air
+  /fill ~-1 2 ~2 ~-1 2 ~2 minecraft:hopper[facing=east]
+  /fill ~ 2 ~2 ~ 2 ~2 minecraft:chest[facing=north]
+
+  // /fill ~1 ~3 ~-3 ~3 ~5 ~1 minecraft:glass hollow
+  /fill ~-3 ~4 ~-3 ~3 ~6 ~-1 minecraft:glass hollow
+
+  /fill ~-2 ~4 ~-2 ~-2 ~4 ~-2 minecraft:hopper
+  /fill ~-3 ~4 ~-2 ~-3 ~4 ~-2 minecraft:comparator[facing=east]
+  /fill ~-4 ~4 ~-3 ~-4 ~4 ~-1 minecraft:redstone_lamp
+  /fill ~-4 ~3 ~-2 ~-4 ~5 ~-2 minecraft:redstone_lamp
+  /fill ~-5 ~4 ~-2 ~-5 ~4 ~-2 minecraft:bell
+  /fill ~-2 ~3 ~-2 ~-2 ~3 ~-2 minecraft:chest[facing=south]
+
+  // /fill ~-2 3 ~2 ~-2 2 ~2 minecraft:water
+  /fill ~2 3 ~-2 ~2 ~5 ~-2 minecraft:water
+  // /fill ~-2 2 ~-2 ~-2 ~4 ~-2 minecraft:torch replace air  
+    
+  /function drh:add_item_elevator_detector
+
+  // common verticals:
+  /fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
+  /fill ~-2 ~-3 ~1 ~-2 ~-1 ~1 minecraft:cobblestone
+  /fill ~-1 ~-3 ~2 ~-1 ~-1 ~2 minecraft:cobblestone
+  /fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
+  /fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
+  /fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:glass
+  /fill ~-2 2 ~-2 ~-2 ~1 ~-2 minecraft:ladder[facing=east]
+
+  // move cart outside for item elevator (downward) detector
+  /fill ~-6 ~-5 ~2 ~-4 ~-3 ~4 glass hollow
+  /fill ~-5 ~-5 ~3 ~-5 ~-5 ~3 cobblestone
+  /tp @e[type=chest_minecart,name=Excavator,limit=1] ~-5 ~-4 ~3
+  /function drh:get_excavator_pos
+
+  /function drh:add_item_elevator_downward_upper_level
+}
+
+function add_item_elevator_downward_upper_level {
+
+  // /tp ~-5 ~-3 ~3
+  // /function drh:get_excavator_pos
+
+  // item elevator (downward, upper level)
+  /fill ~2 ~2 ~ ~2 ~4 ~ minecraft:iron_bars
+  /fill ~2 ~2 ~-1 ~2 ~3 ~-1 minecraft:cobblestone
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=east]
+  /fill ~2 ~2 ~ ~2 ~2 ~ minecraft:hopper[facing=north]
+
+  /function drh:add_item_elevator_detector
+}
 
 function excavate_init {
   /say  DEBUG excavate_init
@@ -139,6 +194,7 @@ function excavate_floor{
   /say  DEBUG excavate_floor
 
   /function drh:build_room
+  /function drh:add_outer_walls_to_mine_area
   /function drh:excavate_non_ores1
   /function drh:excavate_non_ores2
   /function drh:excavate_non_ores3
@@ -148,6 +204,32 @@ function excavate_floor{
 function build_room {
   /say  DEBUG build_room
 
+  /function drh:build_room_common
+
+  // interior
+  /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
+  // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
+  /fill ~-1 ~2 ~ ~-1 ~4 ~2 minecraft:cobblestone_wall
+  /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
+  /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
+
+  // item elevator
+  /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
+  /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+
+  // /fill ~1 ~1 ~-1 ~1 ~1 ~-1 minecraft:glass
+  // /fill ~-1 ~2 ~-2 ~1 ~3 ~-1 minecraft:oak_planks
+  // /fill ~1 ~2 ~-1 ~1 ~2 ~-1 minecraft:comparator[facing=east]
+  // /fill ~ ~3 ~-1 ~ ~3 ~-1 minecraft:repeater[facing=east,delay=2]
+  // /fill ~-1 ~4 ~-1 ~-1 ~4 ~-1 minecraft:redstone_wire
+  // /fill ~-1 ~3 ~-2 ~ ~3 ~-2 minecraft:redstone_wire
+  // /fill ~-1 ~2 ~-1 ~-1 ~2 ~-1 minecraft:redstone_wall_torch[facing=west]
+  // /fill ~1 ~3 ~-1 ~1 ~3 ~-1 minecraft:redstone_wall_torch[facing=south]
+  /function drh:add_item_elevator_detector
+}
+
+function build_room_common {
   // initial main room floor/porch
   /fill ~-4 ~ ~-4 ~4 ~5 ~4 minecraft:air
   /fill ~-4 ~-1 ~-4 ~4 ~-1 ~4 minecraft:glowstone
@@ -171,13 +253,6 @@ function build_room {
   /fill ~3 ~0 ~-3 ~3 ~4 ~-3 minecraft:cobblestone_wall
   /fill ~3 ~0 ~3 ~3 ~4 ~3 minecraft:cobblestone_wall
 
-  // interior
-  /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
-  // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
-  /fill ~-1 ~2 ~ ~-1 ~4 ~2 minecraft:cobblestone_wall
-  /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
-  /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
-
   // doorway
   /fill ~3 ~ ~2 ~3 ~1 ~2 minecraft:air
   /fill ~2 ~ ~3 ~2 ~1 ~3 minecraft:air
@@ -195,11 +270,25 @@ function build_room {
 
   /fill ~2 ~ ~ ~2 ~1 ~ minecraft:iron_bars
   /fill ~ ~ ~2 ~ ~1 ~2 minecraft:iron_bars
+}
 
-  // item elevator
-  /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
-  /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
-  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+function add_item_elevator_detector {
+  /fill ~1 ~1 ~-1 ~1 ~1 ~-1 minecraft:glass
+  /fill ~-1 ~2 ~-2 ~1 ~3 ~-1 minecraft:oak_planks
+  /fill ~-1 ~2 ~-2 ~-1 ~2 ~-2 minecraft:oak_slab[type=top]
+  /fill ~1 ~2 ~-1 ~1 ~2 ~-1 minecraft:comparator[facing=east]
+  /fill ~ ~3 ~-1 ~ ~3 ~-1 minecraft:repeater[facing=east,delay=2]
+  /fill ~-1 ~4 ~-1 ~-1 ~4 ~-1 minecraft:redstone_wire
+  /fill ~-1 ~3 ~-2 ~ ~3 ~-2 minecraft:redstone_wire
+  /fill ~-1 ~2 ~-1 ~-1 ~2 ~-1 minecraft:redstone_wall_torch[facing=west]
+  /fill ~1 ~3 ~-1 ~1 ~3 ~-1 minecraft:redstone_wall_torch[facing=south]
+}
+
+function add_outer_walls_to_mine_area {
+  /fill ~-$(xz_delta_outer_wall) ~ ~-$(xz_delta_outer_wall) ~$(xz_delta_outer_wall) ~4 ~-$(xz_delta_outer_wall) glass
+  /fill ~-$(xz_delta_outer_wall) ~ ~$(xz_delta_outer_wall) ~$(xz_delta_outer_wall) ~4 ~$(xz_delta_outer_wall) glass
+  /fill ~-$(xz_delta_outer_wall) ~ ~-$(xz_delta_outer_wall) ~-$(xz_delta_outer_wall) ~4 ~$(xz_delta_outer_wall) glass
+  /fill ~$(xz_delta_outer_wall) ~ ~-$(xz_delta_outer_wall) ~$(xz_delta_outer_wall) ~4 ~$(xz_delta_outer_wall) glass
 }
 
 function excavate_non_ores1 {
@@ -217,14 +306,8 @@ function excavate_non_ores2 {
   /say  DEBUG excavate_non_ores2
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
 }
 
 function excavate_non_ores3 {
@@ -235,7 +318,10 @@ function excavate_non_ores3 {
 
   // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) torch replace air
   
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace lava
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace water
   /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace stone
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace air
 }
 
 function prep_next_room {
@@ -257,15 +343,5 @@ function prep_next_room {
   // move cart up to next level
   /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~$(dy_room_offset) ~
   /function drh:get_excavator_pos
+
 }
-  // /fill ~-3 2 ~-3 ~3 7 ~3 minecraft:polished_andesite hollow
-
-  // // porch
-  // /fill ~-4 2 ~-4 ~4 2 ~4 glowstone hollow
-  // /fill ~-3 2 ~-3 ~4 2 ~4 glass hollow
-  // /fill ~-4 2 ~-4 ~3 2 ~3 glass hollow
-
-
-  // /fill ~-3 2 ~-3 ~3 2 ~3 minecraft:cobblestone_wall
-  // /fill ~-3 2 ~-3 ~3 2 ~3 minecraft:polished_diorite
-  // /fill ~-3 2 ~-3 ~3 2 ~3 cobblestone_wall hollow

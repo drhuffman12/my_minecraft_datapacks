@@ -8,4 +8,7 @@
 say  DEBUG excavate_non_ores3
 fill ~-20 ~ ~-20 ~20 ~4 ~20 air replace lava
 fill ~-20 ~ ~-20 ~20 ~4 ~20 air replace water
+fill ~-20 ~5 ~-20 ~20 ~5 ~20 glass replace lava
+fill ~-20 ~5 ~-20 ~20 ~5 ~20 glass replace water
 fill ~-20 ~5 ~-20 ~20 ~5 ~20 glass replace stone
+fill ~-20 ~5 ~-20 ~20 ~5 ~20 glass replace air
