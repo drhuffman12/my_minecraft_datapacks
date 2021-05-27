@@ -8,12 +8,11 @@ function drh:mcscript/load
 
 
 function drh:sidebar_clear
-say  ------------
+say -- Mining utilities loaded! --
+say -- Go to the top of something and enter this command: `function excavate` --
 
 
 
-
-say  DEBUG xz_delta: 20
 
 
 

@@ -49,7 +49,11 @@ Go to somewhere (above ground) where you want the X-Z center of your mine to be.
 
 Type `/function drh:excavate`.
 
-This will excavate a few layers from Y 2 to Y 15, add some glass floors between, and leaving the non-ores to be mined. Also, it will generate a vertical pathway from your current position down to the mine, along with some water elevators.
+This will excavate a few layers from Y 2 to Y 15, add some glass floors between, and leaving the non-ores to be mined.
+
+![drh/docs/excavated_layers.png](drh/docs/excavated_layers.png)
+
+Also, it will generate a vertical pathway from your initial position down to the mine, along with some water elevators to/from the 'penthouse' at the top.
 
 ![drh/docs/mineshaft_penthouse.png](drh/docs/mineshaft_penthouse.png)
 
@@ -59,10 +63,26 @@ NOTE: This is also supposed to run `/function drh:add_item_elevator_downward_upp
 
 ## Ore Harvesting
 
-If you place your ores/items/etc into the droppers along the ore water elevator, they will travel up the water elevator. When they get to the top, they'll travel across and down into a hopper and then into a chest. When they get to the hopper, they'll trigger the bell and light up the redstone lamps. Feel free to connect an item filter to this. (I might add that later, unless someone else submits a good PR with one first.)
+Place your ores/items/etc into the droppers along the ore water elevator.
+
+![drh/docs/place_items_in_hoppers.png](drh/docs/place_items_in_hoppers.png)
+
+You might want to add some furnaces at each level or maybe just at the top.
+
+They will travel up the water elevator.
+
+![drh/docs/items_going_up_water_elevator.png](drh/docs/items_going_up_water_elevator.png)
+
+When they get to the top, they'll travel across and down into a hopper and then into a chest. 
+
+![drh/docs/item_collector.png](drh/docs/item_collector.png)
+
+When they get to the hopper, they'll trigger the bell and light up the redstone lamps.
 
 ![drh/docs/ore_harvesting.png](drh/docs/ore_harvesting.png)
 ![drh/docs/item_notifier.png](drh/docs/item_notifier.png)
+
+Feel free to connect an item sorters (and maybe furnaces) here. (I might add that later, unless someone else submits a good PR with one first.)
 
 ## Contributing
 
@@ -80,7 +100,6 @@ $ mcscript compile
  Generated   .//drh/data/drh/functions/prep_mine.mcfunction 
  Generated   .//drh/data/drh/functions/main.mcfunction 
 ```
-
 
 ## See also:
 

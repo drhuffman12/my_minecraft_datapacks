@@ -7,7 +7,8 @@ run function sidebar_clear {
   /scoreboard objectives setdisplay sidebar clear_sidebar
 }
 
-/say  ------------
+/say -- Mining utilities loaded! --
+/say -- Go to the top of something and enter this command: `function excavate` --
 
 function test1 {
   /sat @s Hello World
@@ -19,16 +20,6 @@ var y
 function sidebar_show_y {
   /scoreboard objectives setdisplay sidebar y
 }
-
-// const y_ceil = Array{6,11,16}
-// const y_floor_w4 = Array{5,10,15}
-// const y_floor_w3 = Array{4,9,14}
-// const y_floor_w2 = Array{3,8,13}
-// const y_floor_w1 = Array{2,7,12}
-// const y_floor = Array{1,6,11}
-
-// debug:
-/say  DEBUG xz_delta: $(xz_delta)
 
 function excavate {
   /say  DEBUG excavate
@@ -42,23 +33,16 @@ function excavate {
   while (y @e[type=chest_minecart,name=Excavator,limit=1] <= y @s) {
     asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
       /function drh:excavate_floor
-
-      // /function drh:get_excavator_pos
     }
   }
 
   asat('@e[type=chest_minecart,name=Excavator,limit=1]'){
-    // /function drh:prep_next_room
     /function drh:build_elevators_and_penthouse    
   }
 
   // cleanup
   /function drh:excavators_delete
 }
-
-// unlesss(excavators_exist) {
-
-// }
 
 function build_elevators_and_penthouse {
 
@@ -140,12 +124,6 @@ function excavate_init {
   /function drh:get_excavator_pos
 }
 
-function excavators_exist {
-  /say  DEBUG excavators_exist
-
-  // /kill @e[type=chest_minecart,name=Excavator]
-}
-
 function excavators_delete {
   /say  DEBUG excavators_delete
 
@@ -208,7 +186,6 @@ function build_room {
 
   // interior
   /fill ~-1 ~-1 ~ ~-1 ~-1 ~2 minecraft:cobblestone
-  // /fill ~-1 ~2 ~ ~-1 ~3 ~2 minecraft:iron_bars
   /fill ~-1 ~2 ~ ~-1 ~4 ~2 minecraft:cobblestone_wall
   /fill ~-1 ~ ~ ~-1 ~ ~2 minecraft:oak_door[facing=west,half=lower]
   /fill ~-1 ~1 ~ ~-1 ~1 ~2 minecraft:oak_door[facing=west,half=upper]
@@ -218,14 +195,6 @@ function build_room {
   /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
   /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
 
-  // /fill ~1 ~1 ~-1 ~1 ~1 ~-1 minecraft:glass
-  // /fill ~-1 ~2 ~-2 ~1 ~3 ~-1 minecraft:oak_planks
-  // /fill ~1 ~2 ~-1 ~1 ~2 ~-1 minecraft:comparator[facing=east]
-  // /fill ~ ~3 ~-1 ~ ~3 ~-1 minecraft:repeater[facing=east,delay=2]
-  // /fill ~-1 ~4 ~-1 ~-1 ~4 ~-1 minecraft:redstone_wire
-  // /fill ~-1 ~3 ~-2 ~ ~3 ~-2 minecraft:redstone_wire
-  // /fill ~-1 ~2 ~-1 ~-1 ~2 ~-1 minecraft:redstone_wall_torch[facing=west]
-  // /fill ~1 ~3 ~-1 ~1 ~3 ~-1 minecraft:redstone_wall_torch[facing=south]
   /function drh:add_item_elevator_detector
 }
 

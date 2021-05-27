@@ -8,25 +8,11 @@ run function sidebar_clear {
   /scoreboard objectives setdisplay sidebar clear_sidebar
 }
 
+// Edit the values for xz_delta and xz_delta_outer_wall if you want narrower or wider excavation layers:
 const xz_delta = 20
 const xz_delta_outer_wall = 21
 
-// debug:
-/say DEBUG xz_delta: $(xz_delta)
-
 var y
 
-const testMap = Map{
-	"key1":"value",
-	"key2":"value2"
-}
-
-// const testArr = Array{
-// 	"value", // index 0
-// 	"value2" // index 1
-// }
-
-
 const dy_ceiling = 4
-// const dy_floor = -1
-const dy_room_offset = 6 // 5
+const dy_room_offset = 6
