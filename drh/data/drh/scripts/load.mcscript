@@ -64,12 +64,18 @@ function build_elevators_and_penthouse {
 
   /function drh:build_room_common
 
-  // item elevator
+  // item elevator (upward)
   /fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
   
   /fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
   /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
   /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+
+  // item elevator (downward, lower level)
+  /fill ~-1 4 ~2 ~-1 4 ~2 minecraft:iron_bars
+  /fill ~-1 3 ~2 ~-1 3 ~2 minecraft:air
+  /fill ~-1 2 ~2 ~-1 2 ~2 minecraft:hopper[facing=east]
+  /fill ~ 2 ~2 ~ 2 ~2 minecraft:chest[facing=north]
 
   // /fill ~1 ~3 ~-3 ~3 ~5 ~1 minecraft:glass hollow
   /fill ~-3 ~4 ~-3 ~3 ~6 ~-1 minecraft:glass hollow
@@ -89,10 +95,34 @@ function build_elevators_and_penthouse {
 
   // common verticals:
   /fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
+  /fill ~-2 ~-3 ~1 ~-2 ~-1 ~1 minecraft:cobblestone
+  /fill ~-1 ~-3 ~2 ~-1 ~-1 ~2 minecraft:cobblestone
   /fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
   /fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
   /fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:glass
   /fill ~-2 2 ~-2 ~-2 ~1 ~-2 minecraft:ladder[facing=east]
+
+  // move cart outside for item elevator (downward) detector
+  /fill ~-6 ~-5 ~2 ~-4 ~-3 ~4 glass hollow
+  /fill ~-5 ~-5 ~3 ~-5 ~-5 ~3 cobblestone
+  /tp @e[type=chest_minecart,name=Excavator,limit=1] ~-5 ~-4 ~3
+  /function drh:get_excavator_pos
+
+  /function drh:add_item_elevator_downward_upper_level
+}
+
+function add_item_elevator_downward_upper_level {
+
+  // /tp ~-5 ~-3 ~3
+  // /function drh:get_excavator_pos
+
+  // item elevator (downward, upper level)
+  /fill ~2 ~2 ~ ~2 ~4 ~ minecraft:iron_bars
+  /fill ~2 ~2 ~-1 ~2 ~3 ~-1 minecraft:cobblestone
+  /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=east]
+  /fill ~2 ~2 ~ ~2 ~2 ~ minecraft:hopper[facing=north]
+
+  /function drh:add_item_elevator_detector
 }
 
 function excavate_init {
@@ -288,6 +318,8 @@ function excavate_non_ores3 {
 
   // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) torch replace air
   
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace lava
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace water
   /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace stone
   /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace air
 }

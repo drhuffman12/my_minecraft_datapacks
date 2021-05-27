@@ -10,6 +10,10 @@ fill ~2 2 ~-2 ~2 2 ~-2 minecraft:soul_sand
 fill ~1 ~-1 ~-2 ~1 ~4 ~-2 minecraft:glass
 fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
 fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
+fill ~-1 4 ~2 ~-1 4 ~2 minecraft:iron_bars
+fill ~-1 3 ~2 ~-1 3 ~2 minecraft:air
+fill ~-1 2 ~2 ~-1 2 ~2 minecraft:hopper[facing=east]
+fill ~ 2 ~2 ~ 2 ~2 minecraft:chest[facing=north]
 fill ~-3 ~4 ~-3 ~3 ~6 ~-1 minecraft:glass hollow
 fill ~-2 ~4 ~-2 ~-2 ~4 ~-2 minecraft:hopper
 fill ~-3 ~4 ~-2 ~-3 ~4 ~-2 minecraft:comparator[facing=east]
@@ -20,7 +24,14 @@ fill ~-2 ~3 ~-2 ~-2 ~3 ~-2 minecraft:chest[facing=south]
 fill ~2 3 ~-2 ~2 ~5 ~-2 minecraft:water
 function drh:add_item_elevator_detector
 fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
+fill ~-2 ~-3 ~1 ~-2 ~-1 ~1 minecraft:cobblestone
+fill ~-1 ~-3 ~2 ~-1 ~-1 ~2 minecraft:cobblestone
 fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
 fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
 fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:glass
 fill ~-2 2 ~-2 ~-2 ~1 ~-2 minecraft:ladder[facing=east]
+fill ~-6 ~-5 ~2 ~-4 ~-3 ~4 glass hollow
+fill ~-5 ~-5 ~3 ~-5 ~-5 ~3 cobblestone
+tp @e[type=chest_minecart,name=Excavator,limit=1] ~-5 ~-4 ~3
+function drh:get_excavator_pos
+function drh:add_item_elevator_downward_upper_level
