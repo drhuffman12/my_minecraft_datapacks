@@ -139,6 +139,7 @@ function excavate_floor{
   /say  DEBUG excavate_floor
 
   /function drh:build_room
+  /function drh:add_outer_walls_to_mine_area
   /function drh:excavate_non_ores1
   /function drh:excavate_non_ores2
   /function drh:excavate_non_ores3
@@ -202,6 +203,14 @@ function build_room {
   /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
 }
 
+function add_outer_walls_to_mine_area {
+  const dx_outer_walls = xz_delta + 1
+  /fill ~-$(dx_outer_walls) ~ ~-$(dx_outer_walls) ~$(dx_outer_walls) ~4 ~-$(dx_outer_walls) glass
+  /fill ~-$(dx_outer_walls) ~ ~$(dx_outer_walls) ~$(dx_outer_walls) ~4 ~$(dx_outer_walls) glass
+  /fill ~-$(dx_outer_walls) ~ ~-$(dx_outer_walls) ~-$(dx_outer_walls) ~4 ~$(dx_outer_walls) glass
+  /fill ~$(dx_outer_walls) ~ ~-$(dx_outer_walls) ~$(dx_outer_walls) ~4 ~$(dx_outer_walls) glass
+}
+
 function excavate_non_ores1 {
   /say  DEBUG excavate_non_ores1
 
@@ -217,14 +226,8 @@ function excavate_non_ores2 {
   /say  DEBUG excavate_non_ores2
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
-  // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace sand
 }
 
 function excavate_non_ores3 {
@@ -236,6 +239,7 @@ function excavate_non_ores3 {
   // /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) torch replace air
   
   /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace stone
+  /fill ~-$(xz_delta) ~5 ~-$(xz_delta) ~$(xz_delta) ~5 ~$(xz_delta) glass replace air
 }
 
 function prep_next_room {
