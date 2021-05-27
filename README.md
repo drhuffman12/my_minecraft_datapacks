@@ -47,10 +47,22 @@ There are no more data packs available.
 
 Go to somewhere (above ground) where you want the X-Z center of your mine to be.
 
-Type `/function drh:prep_mine`.
+Type `/function drh:excavate`.
 
-This will excavate a few layers from Y 2 to Y 15, add some glass floors between, and leaving the non-ores to be mined.
-Also, it will generate a vertical pathway from your current position down to the mine.
+This will excavate a few layers from Y 2 to Y 15, add some glass floors between, and leaving the non-ores to be mined. Also, it will generate a vertical pathway from your current position down to the mine, along with some water elevators.
+
+![drh/docs/mineshaft_penthouse.png](drh/docs/mineshaft_penthouse.png)
+
+NOTE: This is also supposed to run `/function drh:add_item_elevator_downward_upper_level` at the top, but it is not working. So, you have to go outside and dig down to the the cobblestone block surrounded by glass blocks and stand on the cobblestone block. When you're there (and air above you), run `/function drh:add_item_elevator_downward_upper_level`, then climb your way back out.
+
+![drh/docs/glitchy_item_elevator_downward_upper_level.png](drh/docs/glitchy_item_elevator_downward_upper_level.png)
+
+## Ore Harvesting
+
+If you place your ores/items/etc into the droppers along the ore water elevator, they will travel up the water elevator. When they get to the top, they'll travel across and down into a hopper and then into a chest. When they get to the hopper, they'll trigger the bell and light up the redstone lamps. Feel free to connect an item filter to this. (I might add that later, unless someone else submits a good PR with one first.)
+
+![drh/docs/ore_harvesting.png](drh/docs/ore_harvesting.png)
+![drh/docs/item_notifier.png](drh/docs/item_notifier.png)
 
 ## Contributing
 
