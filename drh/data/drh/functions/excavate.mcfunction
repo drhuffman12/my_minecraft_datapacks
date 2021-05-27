@@ -8,7 +8,6 @@
 say  DEBUG excavate
 function drh:excavate_init
 scoreboard players remove @s y 6
-execute if score @e[type=chest_minecart,name=Excavator,limit=1] y < @s y run function drh:mcscript/while1
-execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run function drh:prep_next_room
+execute if score @e[type=chest_minecart,name=Excavator,limit=1] y <= @s y run function drh:mcscript/while1
 execute as @e[type=chest_minecart,name=Excavator,limit=1] at @s run function drh:build_elevators_and_penthouse    
 function drh:excavators_delete

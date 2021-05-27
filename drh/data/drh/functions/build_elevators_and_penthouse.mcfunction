@@ -22,4 +22,5 @@ function drh:add_item_elevator_detector
 fill ~-2 3 ~ ~-2 ~-1 ~2 minecraft:water
 fill ~-2 2 ~ ~-2 2 ~ minecraft:soul_sand
 fill ~-2 2 ~2 ~-2 2 ~2 minecraft:magma_block
-fill ~-2 2 ~-1 ~-2 ~1 ~-1 minecraft:ladder[facing=east]
+fill ~-2 2 ~-1 ~-2 ~-1 ~-1 minecraft:glass
+fill ~-2 2 ~-2 ~-2 ~1 ~-2 minecraft:ladder[facing=east]

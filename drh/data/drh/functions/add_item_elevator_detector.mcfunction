@@ -7,6 +7,7 @@
 # this file is generated based on a function specified in.//drh/data/drh/functions/load.mcscript
 fill ~1 ~1 ~-1 ~1 ~1 ~-1 minecraft:glass
 fill ~-1 ~2 ~-2 ~1 ~3 ~-1 minecraft:oak_planks
+fill ~-1 ~2 ~-2 ~-1 ~2 ~-2 minecraft:oak_slab[type=top]
 fill ~1 ~2 ~-1 ~1 ~2 ~-1 minecraft:comparator[facing=east]
 fill ~ ~3 ~-1 ~ ~3 ~-1 minecraft:repeater[facing=east,delay=2]
 fill ~-1 ~4 ~-1 ~-1 ~4 ~-1 minecraft:redstone_wire
