@@ -9,7 +9,7 @@ function drh:mcscript/load
 
 function drh:sidebar_clear
 say -- Mining utilities loaded! --
-say -- Go to the top of something and enter this command: `function excavate` --
+say -- Go to the top of something and enter this command: `/function drh:excavate` --
 
 
 
@@ -20,6 +20,11 @@ say -- Go to the top of something and enter this command: `function excavate` --
 
 
 
+
+
+
+
+scoreboard players set test_val test_val 0
 
 
 

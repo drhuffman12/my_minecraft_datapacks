@@ -7,3 +7,12 @@
 ler!
 scoreboard objectives add clear_sidebar dummy
 scoreboard objectives add y dummy
+scoreboard objectives add y_color_value dummy
+scoreboard objectives add y_color_block dummy
+
+# Extended from data/drh/functions/load.mcscript
+# to drh/data/drh/functions/mcscript/load.mcfunction
+# please do not touch this file!
+# it is used by the compiler!
+scoreboard objectives add test_val dummy
+scoreboard objectives add score dummy

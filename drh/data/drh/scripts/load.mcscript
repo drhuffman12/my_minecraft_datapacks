@@ -8,7 +8,7 @@ run function sidebar_clear {
 }
 
 /say -- Mining utilities loaded! --
-/say -- Go to the top of something and enter this command: `function excavate` --
+/say -- Go to the top of something and enter this command: `/function drh:excavate` --
 
 function test1 {
   /sat @s Hello World
@@ -21,8 +21,16 @@ function sidebar_show_y {
   /scoreboard objectives setdisplay sidebar y
 }
 
+// function paint_level_indicators {
+//   /function drh:excavators_delete
+//   /function drh:sidebar_show_y
+//   /function drh:get_player_pos
+//   /summon chest_minecart ~ 3 ~ {CustomName:"\"Excavator\"",NoGravity:1b}
+
+// }
+
 function excavate {
-  /say  DEBUG excavate
+  // /say  DEBUG excavate
 
   // init
   /function drh:excavate_init
@@ -110,28 +118,29 @@ function add_item_elevator_downward_upper_level {
 }
 
 function excavate_init {
-  /say  DEBUG excavate_init
+  // /say  DEBUG excavate_init
+
+  /function drh:excavators_delete
 
   /function drh:sidebar_show_y
   
   /function drh:get_player_pos
 
-  /function drh:excavators_delete
-
   /function drh:init_excavator_and_chamber
   
-  /function drh:get_player_pos
+  // /function drh:get_player_pos
   /function drh:get_excavator_pos
 }
 
 function excavators_delete {
-  /say  DEBUG excavators_delete
+  // /say  DEBUG excavators_delete
 
   /kill @e[type=chest_minecart,name=Excavator]
 }
 
 function init_excavator_and_chamber {
-  /say  DEBUG init_excavator_and_chamber
+  // /function drh:floor_counter_reset
+  // /say  DEBUG init_excavator_and_chamber
 
   // initial main room floor/porch
   /fill ~-4 3 ~-4 ~4 8 ~4 minecraft:air
@@ -142,7 +151,7 @@ function init_excavator_and_chamber {
   // initial main room walls/ceiling/floor
   /fill ~-3 2 ~-3 ~3 8 ~3 minecraft:glass hollow
 
-  /summon chest_minecart ~ 3 ~ {CustomName:"\"Excavator\""}
+  /summon chest_minecart ~ 3 ~ {CustomName:"\"Excavator\"",NoGravity:1b}
 
   // Minecart should be summon to here:
   // /tp ~ 3 ~
@@ -150,7 +159,7 @@ function init_excavator_and_chamber {
 
 
 function get_player_pos {
-  /say  DEBUG get_player_pos
+  // /say  DEBUG get_player_pos
 
   // Use scorebords to note the player's x,y,z position
   /execute store result score @s x run data get entity @s Pos[0]
@@ -159,7 +168,7 @@ function get_player_pos {
 }
 
 function get_excavator_pos {
-  /say  DEBUG get_excavator_pos
+  // /say  DEBUG get_excavator_pos
 
   // Use scorebords to note the entity's y position
   /execute store result score @e[type=chest_minecart,name=Excavator,limit=1] y run data get entity @e[type=chest_minecart,name=Excavator,limit=1] Pos[1]
@@ -169,9 +178,19 @@ function get_excavator_pos {
 // Below are meant to be relative to the current position of the Excavator
 
 function excavate_floor{
-  /say  DEBUG excavate_floor
+  // /say  DEBUG excavate_floor
 
+  // /tellraw @a {"rawtext":[{"text":"** Excavationg for level "},{"score":{"name":"*","objective":"y"}},{"text":". **"}]}
+  // /tellraw @a {"rawtext":[{"text":"** Excavationg for level "}]}
+  /tellraw @a ["",{"text":"** Excavationg for level "},{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}},{"text":" **"}]
+  // /tellraw @a ["",{"text":"** Excavationg for level "},{"score":{"name":"@p","objective":"y"}},{"text":" **"}]
+
+  
   /function drh:build_room
+
+  /function drh:get_excavator_pos
+  /function drh:floor_indicator_add
+
   /function drh:add_outer_walls_to_mine_area
   /function drh:excavate_non_ores1
   /function drh:excavate_non_ores2
@@ -180,7 +199,7 @@ function excavate_floor{
 }
 
 function build_room {
-  /say  DEBUG build_room
+  // /say  DEBUG build_room
 
   /function drh:build_room_common
 
@@ -195,8 +214,115 @@ function build_room {
   /fill ~2 ~-1 ~-1 ~2 ~4 ~-1 minecraft:glass
   /fill ~2 ~2 ~-1 ~2 ~2 ~-1 minecraft:dropper[facing=north]
 
+  // /function drh:get_excavator_pos
+  // /function drh:floor_indicator_add
+
   /function drh:add_item_elevator_detector
 }
+
+// function floor_counter_reset {
+//   // y_color_value @e[type=chest_minecart,name=Excavator,limit=1] = 0
+//   y_color_value = 0
+// }
+
+// function floor_counter_increment {
+//   // y_color_value @e[type=chest_minecart,name=Excavator,limit=1] += 1
+//   // if(y_color_value @e[type=chest_minecart,name=Excavator,limit=1] > 15) {
+//   //   y_color_value @e[type=chest_minecart,name=Excavator,limit=1] = 0
+//   // }
+
+//   y_color_value += 1
+//   if(y_color_value > 15) {
+//     y_color_value = 0
+//   }
+
+// }
+
+var test_val = 0
+function test2 {
+  test_val = 2
+  for(1,5,i){
+    // /say $(txt)
+    /function drh:test3
+    test_val += 1
+  }
+
+}
+
+function test3 {
+
+    switch(test_val){
+        case 0 {
+          /say var is 0
+        },
+        case 1 {
+          /say var is 1
+        },
+        case 2 {
+          /say var is 2
+        },
+        case > 4 {
+            /say var is over 4
+        },
+        case < 2 {
+            /say var is below 2
+        },
+        default {
+            /say SORRY no match
+        }
+    }
+}
+
+function test4 {
+  // var test = 11
+  // switch(test){
+  //   case 11 {
+  //     /say var is 11
+  //   },
+  //   case > 10 {
+  //     /say var is over 10
+  //   },
+  //   case < 10 {
+  //     /say var is below 10
+  //   },
+  //   default {
+  //     /say no match
+  //   }
+  // }
+
+  var score @s = 2
+  if("score @s matches 0.."){
+    /say score is positive
+    /say multi line
+  }
+}
+
+// function floor_indicator_add {
+// // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}}'}
+//   /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:air
+//   /fill ~-3 ~ ~1 ~-3 ~ ~1 minecraft:cobblestone
+//   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}}'}
+// // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"objective":"y"}}'}
+
+//   /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}}'}
+
+// //   // /say $(y_color_value)
+// //   // /say test
+
+// //   // /function drh:floor_counter_increment
+
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:"\"Y is:\""}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:"\"Y is:\"",Text2:"",Text3: y_color_value}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:'"Y:"',Text2: $(y),Text3: "\"Floor Color:\"",Text4: $(y_color_value)}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:"\"Y is:\"",Text2:["",{"text":"** Excavationg for level "},{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}},{"text":" **"}]}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:"\"Y is:\"",Text2:{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}}}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{Text1:"\"Y is:\"",Text2:{"score":{"name":"@p","objective":"y"}}}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:"\"Y is:\"",Text2:{"score":{"name":"@p","objective":"y"}}}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@e[type=chest_minecart,name=Excavator,limit=1]","objective":"y"}}'}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@s","objective":"y"}}'}
+// //   // /fill ~-2 ~ ~1 ~-2 ~ ~1 minecraft:oak_wall_sign[facing=east]{CustomName:"LevelIndicator",Text1:'"Y is:"',Text2:'{"score":{"name":"@p","objective":"y"}}'}
+// }
 
 function build_room_common {
   // initial main room floor/porch
@@ -261,7 +387,7 @@ function add_outer_walls_to_mine_area {
 }
 
 function excavate_non_ores1 {
-  /say  DEBUG excavate_non_ores1
+  // /say  DEBUG excavate_non_ores1
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace bedrock
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace stone
@@ -272,7 +398,7 @@ function excavate_non_ores1 {
 }
 
 function excavate_non_ores2 {
-  /say  DEBUG excavate_non_ores2
+  // /say  DEBUG excavate_non_ores2
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace gravel
 
@@ -280,7 +406,7 @@ function excavate_non_ores2 {
 }
 
 function excavate_non_ores3 {
-  /say  DEBUG excavate_non_ores3
+  // /say  DEBUG excavate_non_ores3
 
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace lava
   /fill ~-$(xz_delta) ~ ~-$(xz_delta) ~$(xz_delta) ~4 ~$(xz_delta) air replace water
@@ -294,7 +420,7 @@ function excavate_non_ores3 {
 }
 
 function prep_next_room {
-  /say  DEBUG prep_next_room
+  // /say  DEBUG prep_next_room
 
   // initial main room floor/porch
   /fill ~-4 ~5 ~-4 ~4 ~11 ~4 minecraft:air
@@ -312,5 +438,5 @@ function prep_next_room {
   // move cart up to next level
   /tp @e[type=chest_minecart,name=Excavator,limit=1] ~ ~$(dy_room_offset) ~
   /function drh:get_excavator_pos
-
+  // /function drh:floor_counter_increment
 }
