@@ -15,6 +15,10 @@ function test1 {
   /tp ~ ~4 ~
 }
 
+function add_mob_spawner {
+  /setblock ~ ~-1 ~ minecraft:mob_spawner 0 replace  {PersistenceRequired:1}
+}
+
 const xz_delta = 20
 var y
 function sidebar_show_y {
