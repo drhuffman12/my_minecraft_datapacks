@@ -15,8 +15,21 @@ function test1 {
   /tp ~ ~4 ~
 }
 
-function add_mob_spawner {
-  /setblock ~ ~-1 ~ minecraft:mob_spawner 0 replace  {PersistenceRequired:1}
+function add_mob_spawner_1_12_2 {
+  // For Minecraft 1.12.2+
+  // TODO: Figure out a good way to version these functions!
+
+  /fill ~ ~-3 ~ ~1 ~2 ~1 air
+  // /setblock ~ ~-1 ~ minecraft:mob_spawner 0 replace  {PersistenceRequired:1}
+  /setblock ~ ~-3 ~ mob_spawner 0 replace {SpawnData:{id:Zombie},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~1 ~-3 ~ mob_spawner 0 replace {SpawnData:{id:Creeper},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~ ~-3 ~1 mob_spawner 0 replace {SpawnData:{id:Spider},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~1 ~-3 ~1 mob_spawner 0 replace {SpawnData:{id:Skeleton},RequiredPlayerRange:200,MaxNearbyEntities:16}
+
+  /setblock ~ ~-2 ~ mob_spawner 0 replace {SpawnData:{id:Pig},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~1 ~-2 ~ mob_spawner 0 replace {SpawnData:{id:Sheep},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~ ~-2 ~1 mob_spawner 0 replace {SpawnData:{id:Chicken},RequiredPlayerRange:200,MaxNearbyEntities:16}
+  /setblock ~1 ~-2 ~1 mob_spawner 0 replace {SpawnData:{id:Cow},RequiredPlayerRange:200,MaxNearbyEntities:16}
 }
 
 const xz_delta = 20
